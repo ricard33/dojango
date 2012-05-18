@@ -10,6 +10,6 @@
 {% block _dojango_meta_content_lang %}<meta http-equiv="content-language" content="{{ LANGUAGE_CODE }}" />{% endblock %}
 {% block _dojango_post_dj_config %}
 <script type="text/javascript">
-    djConfig['locale'] = "{{ LANGUAGE_CODE }}";
+    {% if DOJANGO.VERSION > '1.6' %}dojoConfig{% else %}djConfig{% endif %}['locale'] = "{{ LANGUAGE_CODE }}";
 </script>
 {% endblock %}

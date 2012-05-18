@@ -9,6 +9,6 @@
 
 {% block _dojango_post_dj_config %}
 <script type="text/javascript">
-    djConfig['locale'] = "{{ LANGUAGE_CODE }}";
+    {% if DOJANGO.VERSION > '1.6' %}dojoConfig{% else %}djConfig{% endif %}['locale'] = "{{ LANGUAGE_CODE }}";
 </script>
 {% endblock %}
