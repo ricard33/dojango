@@ -47,7 +47,7 @@ class DojoAutoRequire:
     """
     USE THE MIDDLEWARE ABOVE (IT IS USING A GLOBAL COLLECTOR OBEJCT)!
     
-    This middleware detects all dojoType="*" definitions in the returned
+    This middleware detects all data-dojo-type="*" definitions in the returned
     response and uses that information to generate all needed dojo.require
     statements and places a <script> block in front of the </body> tag.
 
@@ -58,7 +58,7 @@ class DojoAutoRequire:
         if response and\
            response.get("Content-Type", "") == "text/html; charset=%s" % settings.DEFAULT_CHARSET and\
            len(response.content) > 0: # just for html pages!
-            dojo_type_re = re.compile('\sdojoType\s*\=\s*[\'\"]([\w\d\.\-\_]*)[\'\"]\s*')
+            dojo_type_re = re.compile('\sdata-dojo-type\s*\=\s*[\'\"]([\w\d\.\-\_]*)[\'\"]\s*')
             unique_dojo_modules = set(dojo_type_re.findall(response.content)) # we just need each module once
             if len(unique_dojo_modules) > 0:
                 tail, sep, head = smart_unicode(response.content).rpartition("</body>")

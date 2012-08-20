@@ -42,10 +42,10 @@ dojo.declare("dojango.widget.plugins.InsertImage",
 		//size, thumbHeight, thumbWidth, isHorizontal <= setting these additional parameters
 		command: "insertImage",
 		linkDialogTemplate: [
-					'<div id="${id}_thumbPicker" class="thumbPicker" dojoType="dojango.widget.ThumbnailPicker" size="${size}"',
+					'<div id="${id}_thumbPicker" class="thumbPicker" data-dojo-type="dojango.widget.ThumbnailPicker" size="${size}"',
 					'thumbHeight="${thumbHeight}" thumbWidth="${thumbWidth}" isHorizontal="${isHorizontal}" isClickable="true"></div>',
-					'<label for="${id}_textInput">${text}</label><input dojoType="dijit.form.ValidationTextBox" required="true" name="textInput" id="${id}_textInput"/>',
-					'<div><button dojoType=dijit.form.Button type="submit">${set}</button></div>'
+					'<label for="${id}_textInput">${text}</label><input data-dojo-type="dijit.form.ValidationTextBox" required="true" name="textInput" id="${id}_textInput"/>',
+					'<div><button data-dojo-type=dijit.form.Button type="submit">${set}</button></div>'
 				].join(""),
 		_picker: null,
 		_textInput: null,

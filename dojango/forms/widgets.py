@@ -46,7 +46,7 @@ class DojoWidgetMixin:
     'extra_dojo_require' it is possible to pass additional dojo modules to the
     collector.
     """
-    dojo_type = None # this is the dojoType definition of the widget. also used for generating the dojo.require call
+    dojo_type = None # this is the data-dojo-type definition of the widget. also used for generating the dojo.require call
     alt_require = None # alternative dojo.require call (not using the dojo_type)
     extra_dojo_require = [] # these dojo modules also needs to be loaded for this widget
 
@@ -108,10 +108,10 @@ class DojoWidgetMixin:
         field_attr.update(self.field_attr_map) # the field-attribute-mapping can be customzied
         if extra_attrs:
             attrs.update(extra_attrs)
-        # assigning dojoType to our widget
+        # assigning data-dojo-type to our widget
         dojo_type = getattr(self, "dojo_type", False)
         if dojo_type:
-            attrs["dojoType"] = dojo_type # add the dojoType attribute
+            attrs["data-dojo-type"] = dojo_type # add the data-dojo-type attribute
 
         # fill the global collector object
         if getattr(self, "alt_require", False):
@@ -531,7 +531,7 @@ class ComboBoxStore(TextInput):
             # Only add the 'value' attribute if a value is non-empty.
             final_attrs['value'] = force_unicode(self._format_value(value))
         self.store_attrs.update({
-            'dojoType': self.store,
+            'data-dojo-type': self.store,
             'url': self.url,
             'jsId':store_id
         })
@@ -556,7 +556,7 @@ class ListInput(DojoWidgetMixin, widgets.TextInput):
 
 # THE RANGE SLIDER NEEDS A DIFFERENT REPRESENTATION WITHIN HTML
 # SOMETHING LIKE:
-# <div dojoType="dojox.form.RangeSlider"><input value="5"/><input value="10"/></div>
+# <div data-dojo-type="dojox.form.RangeSlider"><input value="5"/><input value="10"/></div>
 '''class HorizontalRangeSlider(HorizontalSliderInput):
     """This just can be used with a comma-separated-value like: 20,40"""
     dojo_type = 'dojox.form.HorizontalRangeSlider'

@@ -98,6 +98,7 @@ class Command(BaseCommand):
         # sometimes we need to add /, sometimes not :-(
         if settings.DOJO_BUILD_USED_VERSION < '1.2.0':
             release_dir = release_dir + os.path.sep
+        release_dir = release_dir.replace('\\', '/')  # [CR] HACK for Windows
         # setting up the build command
         build_addons = ""
         if settings.DOJO_BUILD_USED_VERSION >= '1.2.0':

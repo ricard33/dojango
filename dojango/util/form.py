@@ -8,7 +8,7 @@ def get_combobox_data(request):
             start - the paging start
             count - the number of entries to return
         The ComboBox and QueryReadStore usage should be like this:
-            <div dojoType="dojox.data.QueryReadStore" jsId="topicStore" url="/topic/live-search/..." requestMethod="post" doClientPaging="false"></div>
+            <div data-dojo-type="dojox.data.QueryReadStore" jsId="topicStore" url="/topic/live-search/..." requestMethod="post" doClientPaging="false"></div>
             <input {% dojo_widget "rs.widget.Tagcombobox" "addTopicInput" %} store="topicStore" style="width:150px" pageSize="20" />
         The most important things here are the attributes requestMethod and doClientPaging!
         The 'doClientPaging' makes the combobox send 'start' and 'count' parameters and the server
