@@ -12,7 +12,7 @@
 <script type="text/javascript">
 	{# baseUrl setting is needed, if you want to combine a local with a remote build! #}
 	{% block _dojango_dojo_config %}
-		var {% if DOJANGO.VERSION > '1.6' %}dojoConfig{% else %}djConfig{% endif %} = {
+		var {% if DOJANGO.VERSION|version_upper_than:'1.6' %}dojoConfig{% else %}djConfig{% endif %} = {
 			'isDebug':{{ DOJANGO.DEBUG|json }},
 			'parseOnLoad': true,
 			'baseUrl':"{{ DOJANGO.DOJO_BASE_PATH }}"
@@ -21,7 +21,7 @@
 			,'dojoBlankHtmlUrl':"{{ DOJANGO.DOJANGO_URL }}/resources/blank.html"
 			,'dojoIframeHistoryUrl':"{{ DOJANGO.DOJANGO_URL }}/resources/blank.html"
 			{% endif %}
-			{% if DOJANGO.VERSION > '1.6' %}
+			{% if DOJANGO.VERSION|version_upper_than:'1.6' %}
 			,'cacheBust': new Date()
 			,'packages':[{'name': 'dojo', 'location': '{{ DOJANGO.DOJO_URL }}'}, {'name': 'dijit', 'location': '{{ DOJANGO.DIJIT_URL }}'}, {'name': 'dojox', 'location': '{{ DOJANGO.DOJOX_URL }}'}]
 			{% else %}{% if DOJANGO.CDN_USE_SSL and not DOJANGO.IS_LOCAL %}

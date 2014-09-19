@@ -9,6 +9,6 @@
 
 {% block _dojango_post_dojo_config %}
 <script type="text/javascript">
-    {% if DOJANGO.VERSION > '1.6' %}dojoConfig{% else %}djConfig{% endif %}['locale'] = "{{ LANGUAGE_CODE }}";
+    {% if DOJANGO.VERSION|version_upper_than:'1.6' %}dojoConfig{% else %}djConfig{% endif %}['locale'] = "{{ LANGUAGE_CODE }}";
 </script>
 {% endblock %}

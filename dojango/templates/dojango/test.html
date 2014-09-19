@@ -1,8 +1,9 @@
 {% extends "dojango/base.html" %}
+{% load dojango_filters %}
 
 {% block dojango_post_dojo_config %}
 	<script>
-		{% if DOJANGO.VERSION > '1.6' %}dojoConfig{% else %}djConfig{% endif %}.parseOnLoad = false;
+		{% if DOJANGO.VERSION|version_upper_than:'1.6' %}dojoConfig{% else %}djConfig{% endif %}.parseOnLoad = false;
 	</script>
 {% endblock %}
 
