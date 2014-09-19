@@ -1,5 +1,8 @@
 import os
+
 from django.conf import settings
+from dojango.version import version_tuple
+
 
 DEBUG = getattr(settings, "DEBUG", False)
 DEFAULT_CHARSET = getattr(settings, 'DEFAULT_CHARSET', 'utf-8')
@@ -35,7 +38,7 @@ CDN_USE_SSL = getattr(settings, "DOJANGO_CDN_USE_SSL", False) # is dojo served v
 _aol_versions = ('0.9.0', '1.0.0', '1.0.2', '1.1.0', '1.1.1', '1.2.0', '1.2.3', '1.3', '1.3.0', '1.3.1', '1.3.2', '1.4', '1.4.0', '1.4.1', '1.4.3', '1.5', '1.5.0', '1.6', '1.6.0')
 _aol_gfx_versions = ('0.9.0', '1.0.0', '1.0.2', '1.1.0', '1.1.1',)
 _google_xd_versions = ('1.1.1', '1.2', '1.2.0', '1.2.3', '1.3', '1.3.0', '1.3.1', '1.3.2', '1.4', '1.4.0', '1.4.1', '1.4.3', '1.5', '1.5.0', '1.6', '1.6.0', '1.6.1')
-_google_versions = ('1.7', '1.7.0', '1.7.1', '1.7.2',) # since Dojo 1.7.0 an alternative loading mechanism is in place
+_google_versions = ('1.7', '1.7.0', '1.7.1', '1.7.2', '1.7.3', '1.7.4', '1.8.0', '1.8.1', '1.8.2', '1.8.3', '1.8.4', '1.8.5', '1.9.0', '1.9.1', '1.9.2',) # since Dojo 1.7.0 an alternative loading mechanism is in place
 DOJO_PROFILES = {
     'google': {'base_url':(CDN_USE_SSL and 'https' or 'http') + '://ajax.googleapis.com/ajax/libs/dojo', 'versions':_google_versions},
     'google_uncompressed': {'base_url':(CDN_USE_SSL and 'https' or 'http') + '://ajax.googleapis.com/ajax/libs/dojo', 'uncompressed':True, 'versions':_google_versions},
@@ -75,10 +78,10 @@ DOJO_BUILD_PROFILE = getattr(settings, "DOJANGO_DOJO_BUILD_PROFILE", "dojango")
 #                              this tupel will be appended to the default folders/files that are skipped: see SKIP_FILES in management/commands/dojobuild.py 
 DOJO_BUILD_PROFILES = {
     'dojango': {
-        'options': (DOJO_VERSION > '1.6' and 'profile' or 'profileFile') + '="%(BASE_MEDIA_ROOT)s/dojango.profile.js" action=release optimize=shrinksafe.keepLines cssOptimize=comments.keepLines',
+        'options': (version_tuple(DOJO_VERSION) > (1,6) and 'profile' or 'profileFile') + '="%(BASE_MEDIA_ROOT)s/dojango.profile.js" action=release optimize=shrinksafe.keepLines cssOptimize=comments.keepLines',
     },
     'dojango_optimized': {
-        'options': (DOJO_VERSION > '1.6' and 'profile' or 'profileFile') + '="%(BASE_MEDIA_ROOT)s/dojango_optimized.profile.js" action=release optimize=shrinksafe.keepLines cssOptimize=comments.keepLines',
+        'options': (version_tuple(DOJO_VERSION) > (1,6) and 'profile' or 'profileFile') + '="%(BASE_MEDIA_ROOT)s/dojango_optimized.profile.js" action=release optimize=shrinksafe.keepLines cssOptimize=comments.keepLines',
         'build_version': '%(DOJO_BUILD_VERSION)s-dojango-optimized-with-dojo',
     },
 }
