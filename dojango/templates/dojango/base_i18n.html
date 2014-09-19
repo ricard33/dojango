@@ -1,5 +1,5 @@
 {% extends "dojango/base.html" %}
-
+{% load dojango_filters %}
 {% if not LANGUAGE_CODE %}
     {% load i18n %}
     {% get_current_language as LANGUAGE_CODE %}
@@ -10,6 +10,6 @@
 {% block _dojango_meta_content_lang %}<meta http-equiv="content-language" content="{{ LANGUAGE_CODE }}" />{% endblock %}
 {% block _dojango_post_dj_config %}
 <script type="text/javascript">
-    {% if DOJANGO.VERSION > '1.6' %}dojoConfig{% else %}djConfig{% endif %}['locale'] = "{{ LANGUAGE_CODE }}";
+    {% if DOJANGO.VERSION|version_upper_than:'1.6' %}dojoConfig{% else %}djConfig{% endif %}['locale'] = "{{ LANGUAGE_CODE }}";
 </script>
 {% endblock %}

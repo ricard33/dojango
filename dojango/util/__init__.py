@@ -1,6 +1,7 @@
 import os
 import datetime
 from decimal import Decimal
+import re
 
 from django import VERSION as django_version
 if django_version >= (1, 5, 0):
@@ -254,3 +255,9 @@ def is_number(s):
     except ValueError:
         pass
     return False
+
+def version_cmp(version1, version2):
+    def normalize(v):
+        return [int(x) for x in re.sub(r'(\.0+)*$','', v).split(".")]
+    return cmp(normalize(version1), normalize(version2))
+
