@@ -220,7 +220,7 @@ def to_json_response(data, func_name=None, use_iframe=False):
     if use_iframe:
         mimetype = "text/html"
         data = render_to_string("dojango/json_iframe.html", {'json_data': data})
-    ret = HttpResponse(data, mimetype=mimetype+"; charset=%s" % settings.DEFAULT_CHARSET)
+    ret = HttpResponse(data, content_type=mimetype+"; charset=%s" % settings.DEFAULT_CHARSET)
     # The following are for IE especially
     ret['Pragma'] = "no-cache"
     ret['Cache-Control'] = "must-revalidate"
